@@ -11,6 +11,7 @@ public class Login {
 	private String nombre="";
 	private String password="";
 	private UsuarioDTO oUsuarioDTO;
+	private String s="";
 	
 	public UsuarioDTO getoUsuarioDTO() {
 		return oUsuarioDTO;
