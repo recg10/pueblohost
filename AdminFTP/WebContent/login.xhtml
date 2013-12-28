@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"   xmlns:ace="http://www.icefaces.org/icefaces/components"    xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <h:head>
+        <title>Task Admin BCH</title>
+        <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+    </h:head>
+		<body>
+		    <ice:form>
+		    	<div  align="center">
+				<ice:graphicImage url="/images/logo_wmbe.jpg" width="550px" height="160px"/>
+				</div>
+			    		  	    <!-- POP UP PARA LOGIN -->
+			    <ice:panelPopup modal="true" draggable="false" visible="true" autoCentre="true" style="width: 388px; height: 200px">
+		          <f:facet name="header">
+		            <ice:panelGrid width="100%" cellpadding="0" cellspacing="0" columns="2" style="text-align: center;" border="0">
+		              <ice:outputText value="Login FTP" styleClass="ver333bold8_OP"/>
+		              <ice:commandButton image="/images/close.gif" title="Cerrar" onclick="window.close();"/>
+		            </ice:panelGrid>
+		          </f:facet>
+		          <f:facet name="body"> 
+		          
+				    <ice:panelGroup style="text-align: left;"> 
+		              <ice:panelGrid width="100%" cellpadding="0" cellspacing="0" columns="3" border="0">
+		              		                                
+		                <ice:outputText  value="Usuario:"/>
+		                <ice:panelGroup>
+		                    <ice:inputText id="Usuario" value="#{login.nombre}" required="true" effect="#{effectManegerBean.effectInputText}">
+		                    <ice:outputText  value="Ej:JperezM"/>
+			                <!-- f:validator validatorId="patenteValidator"/ -->		                	
+			                </ice:inputText> 
+	                	</ice:panelGroup>
+		            	<ice:message id="errorPatente" for="Usuario" style="color: red;"/>
+		                
+		                
+		                
+		            	<ice:outputText value="Clave:" />
+		            	<ice:inputSecret id="Clave" value="#{login.password}" required="true"  />
+		                	<ice:message id="errorEmail" for="Clave" style="color: red;"/>		                             
+		              	</ice:panelGrid>
+			    	  	<ice:panelGroup>
+
+				    	  <ice:panelGrid width="50%" columns="1" style="text-align: center; display:block; width: 366px; height: 47px" border="0">
+				      		 
+			   	 		  </ice:panelGrid> 
+			   	 		  <ice:panelGrid  width="50%" columns="1" style="text-align: center; display:block; width: 366px; height: 47px" border="0">
+				      		
+			   	 		  </ice:panelGrid> 
+			    	  </ice:panelGroup>		              
+		              <ice:panelGrid width="100%" columns="1" style="text-align: center;" border="0">			             
+			              <ice:outputLabel style="color: red"/>
+							<ice:commandButton value="Iniciar proceso"  styleClass="boton Rojo"  image="images/ingresar.JPG"  action="#{login.validaLogin}" />
+							<ice:messages id="errores" style="color: red;"></ice:messages>
+			      <div align="center">			
+					      <ice:outputConnectionStatus showPopupOnDisconnect="true" displayHourglassWhenActive="true" 
+					      activeLabel="Procesando.." style="color: black;font-size: 12px; font-weight: bold"
+					      cautionLabel="Error al obtener informacion intente mas tarde."
+					      inactiveLabel="Esperando"
+					      disconnectedLabel="Sin conexion"/>
+					      </div>
+						      
+		              </ice:panelGrid>		                          
+				    </ice:panelGroup>				    
+		          </f:facet>
+		        </ice:panelPopup>		       	        
+			    
+			    
+			    
+			         
+		    </ice:form>
+		</body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"   xmlns:ace="http://www.icefaces.org/icefaces/components"    xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <h:head>
+        <title>Task Admin BCH</title>
+        <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+    </h:head>
+    <h:body>
+             <h:form id="form">
+             	<div align="center">
+	                <h:outputText value="Bienvenido a Monitoreo BCH"/><br/>                           		
+	           		<ice:commandButton value="Listar Archivos" actionListener="#{processFileBean.queryDocs}"/>
+	           		<ice:outputConnectionStatus showPopupOnDisconnect="true" displayHourglassWhenActive="true"/>
+           		</div>
+                <h:panelGroup>
+                
+				<!-- ace:tableConfigPanel for="dataTableId" columnVisibilityConfigurable="true" columnOrderingConfigurable="true"  columnNameConfigurable="true" -->
+				<ace:dataTable id="dataTableId" value="#{processFileBean.vList2}" 
+					var="var" paginator="true" paginatorPosition="bottom" rows="15" selectionMode="single" 
+					rowIndexVar="row">
+					
+					<ace:column headerText="Nombre archivo" sortBy="#{var.name}" filterBy="#{var.name}" filterMatchMode="contains">
+						<h:outputText value="#{var.name}" ></h:outputText>
+					</ace:column>
+					<ace:column headerText="Size">
+						<h:outputText value="#{var.size}" ></h:outputText>
+					</ace:column>
+					<ace:column headerText="Group">
+						<h:outputText value="#{var.group}" ></h:outputText>
+					</ace:column>
+					<ace:column headerText="tyopewpoeopiswe">
+						<h:outputText value="#{var.type}" ></h:outputText>
+					</ace:column>
+					<!-- 
+					<ace:column headerText="atributos">
+						<h:outputText value="#{var.atributos}"></h:outputText>
+					</ace:column>
+					
+					<ace:column headerText="Estado monitoreo">
+						<ice:graphicImage rendered="#{!var.image}" url="imagen/error.jpg" width="25px" height="25px" title="No monitoreado"/>
+						<ice:graphicImage rendered="#{var.image}" url="imagen/ok.png" width="25px" height="25px" title="SI monitoreado"/>
+					</ace:column>
+					-->
+					<ace:column headerText="Acciones">
+						<ice:commandLink actionListener="#{processFileBean.openFile}">
+							<ice:graphicImage url="imagen/ver.JPG" width="25px" height="25px" title="Ver"/>
+							<f:param name="file" value="#{var.name}"/>
+						</ice:commandLink>	
+						<!-- 					
+						<ice:commandLink rendered="#{!var.image}" actionListener="#{processFileBean.monitoriar}">
+							
+							<ice:graphicImage rendered="#{!var.image}" url="imagen/monitoreoInicio.png" width="25px" height="25px" title="Habilitar monitoreo"/>
+							 							
+							<f:param name="index" value="#{row}"/>							
+						</ice:commandLink>
+						-->
+						<!-- 
+						<ice:commandLink rendered="#{var.image}" actionListener="#{processFileBean.finalizaMonitoreo}">							
+							
+							<ice:graphicImage rendered="#{var.image}" url="imagen/monitoriar.JPG" width="25px" height="25px" title="Deshabilitar monitoreo"/>
+							 
+							<f:param name="index" value="#{row}"/>							
+						</ice:commandLink>
+						-->
+						<h:commandButton value=" " onclick="confirmation.show()" type="button"/>
+						<ice:panelGroup>							
+							
+						</ice:panelGroup>
+						
+					</ace:column>
+					 -->
+					 <ace:panelExpansion>
+	                    <h:outputText value="Cost Per Pound: " />
+	                    <h:outputText value="#{var.codigo}"/>
+	                </ace:panelExpansion>
+				</ace:dataTable>
+				<!-- /ace:tableConfigPanel -->
+				</h:panelGroup>
+				<ace:confirmationDialog widgetVar="confirmation"
+                    message="Estas seguro de monitorear este elemnto?"
+                    header="Confirmation"
+                    width="250"
+                    height="200"
+                    closable="true" showEffect="puff" hideEffect="puff" zindex="#{row}" 
+                    position="center" draggable="true" modal="true">
+	                <h:panelGrid columns="2" styleClass="centeredPanelGrid">
+	                    <ice:commandButton value="Yes" onclick="confirmation.hide()" actionListener="#{processFileBean.monitoriar}"/>
+	                    <ice:commandLink actionListener="#{processFileBean.monitoriar}">
+							<ice:graphicImage url="imagen/monitoriar.JPG" width="25px" height="25px" title="Ver"/>
+							<f:param name="index" value="#{row}"/>							
+						</ice:commandLink>
+	                    <h:commandButton value="No" onclick="confirmation.hide()" actionListener="#{processFileBean.no}" />
+	                </h:panelGrid>
+	            </ace:confirmationDialog>
+             </h:form>
+    </h:body>
+</html>
