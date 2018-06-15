@@ -42,7 +42,7 @@ public class UtilFile{
     public static boolean borrarDirectorio(File file){
         if ( file.isDirectory()) {
               if (!file.delete()){
-                    System.out.println("No puede borrar directorio");
+					System.out.println("NO SE PUEDE BORRAR EL DIRECTORIO");
                     return false;
               }
         }
